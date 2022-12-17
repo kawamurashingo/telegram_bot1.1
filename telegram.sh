@@ -5,7 +5,7 @@ cat client |awk -F',' '{print $1}' |sort |uniq -d | grep -P "\D" && exit 1
 cat member |awk -F',' '{print $1}' |sort |uniq -d | grep -P "\D" && exit 2
 
 # telegram bot id
-BOT_ID="5345777582:AAHE8sX_XDgsSXZw3myJH8FmJifOz2Sk8jM"
+BOT_ID="XXXX:XXXX"
 
 DIR=`dirname $0`
 
@@ -24,7 +24,6 @@ python3 get_events.py | sed -e 's:<html-blob>::g' -e 's:</html-blob>::g' -e "s:<
 sed -e "s/DATE/`date +%Y-%m-%d`/" reverse.sed > make_reverse.sed
 sed -n "/`date +%Y-%m-%d`/,/^$/p" schedule.txt  | sed -f make_reverse.sed | sed -e "s:`date +%Y-%m-%d`:`date +%m/%d`:" -e "s/~.*//" > make.txt
 
-#cp -f make.txt make2.txt
 test -f make.txt.`date +%Y%m%d` && diff make.txt make.txt.`date +%Y%m%d` && exit 1
 
 # make file
